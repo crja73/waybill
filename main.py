@@ -32,7 +32,7 @@ spis = []
 spis.append(city.split(' - ')[1])
 
 
-while count < (num - 40):
+while count < (num - 50):
 
 	circle = random.randint(1, 3)
 
@@ -50,7 +50,8 @@ while count < (num - 40):
 		sponge.append(b)
 		stronge.append(a)
 		sporge.append(km)
-		if count >= (num - 40):
+		if count >= (num - 50):
+			print('Лооол')
 			break
 
 	elif circle == 2:
@@ -94,7 +95,8 @@ while count < (num - 40):
 		stronge.append(city.split(' - ')[1])
 
 		sporge.append(km)
-		if count >= (num - 40):
+		if count >= (num - 50):
+			print('Лооол')
 			break
 
 		for key, val in cities2.items():
@@ -108,12 +110,13 @@ while count < (num - 40):
 		#////////////////////////
 		copy1 = w +' - ' + q
 		copy2 = km
-		count += val
+		count += po
 		spis.append(q)
 		sponge.append(w)
 		stronge.append(q)
 		sporge.append(po)
-		if count >= (num - 40):
+		if count >= (num - 50):
+			print('Лооол')
 			break
 
 	elif circle == 3:
@@ -157,7 +160,8 @@ while count < (num - 40):
 		stronge.append(city.split(' - ')[1])
 
 		sporge.append(km)
-		if count >= (num - 40):
+		if count >= (num - 50):
+			print('Лооол')
 			break
 
 		for key, val in al.items():
@@ -173,14 +177,15 @@ while count < (num - 40):
 		#////////////////////////
 		copy1 = w + ' - ' + w
 		copy2 = km
-		count += val
+		count += ji
 		spis.append(w)
 
 		sponge.append(q)
 		stronge.append(w)
 
 		sporge.append(ji)
-		if count >= (num - 40):
+		if count >= (num - 50):
+			print('Лооол')
 			break
 		for key, val in cities2.items():
 			if spis[-1] in key:    # здесь нужно не сразу использовать места, а сначал собрать вместе, а потом выбрать из них на рандом, чтоб избежать многократных повторений
@@ -193,12 +198,13 @@ while count < (num - 40):
 		#////////////////////////
 		copy1 = w +' - ' + q
 		copy2 = km
-		count += val
+		count += pl
 		spis.append(q)
 		sponge.append(w)
 		stronge.append(q)
 		sporge.append(pl)
-		if count >= (num - 40):
+		if count >= (num - 50):
+			print('Лооол')
 			break
 
 if spis[-1] != 'Алтуфьево':
