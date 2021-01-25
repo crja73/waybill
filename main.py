@@ -14,7 +14,10 @@ count = 0  # подсчет километрожа
 city, km = random.choice(list(cities2.items()))
 copy1 = city
 copy2 = km
+
+#/////////////////////////
 print('{}   {}'.format(city, km))
+#////////////////////////
 
 sponge = []
 sporge = []
@@ -29,14 +32,17 @@ spis = []
 spis.append(city.split(' - ')[1])
 
 
-while count < num - 50:
+while count < (num - 40):
+
 	circle = random.randint(1, 3)
 
 	if circle == 1:
 		string = spis[-1]
 		a = copy1.split(' - ')[0]
 		b = copy1.split(' - ')[1]
+		#////////////////////////
 		print('{} -+ {}  {}'.format(b, a, km))
+		#////////////////////////
 		count += km
 		copy1 = b + ' - ' + a
 		copy2 = km
@@ -44,6 +50,8 @@ while count < num - 50:
 		sponge.append(b)
 		stronge.append(a)
 		sporge.append(km)
+		if count >= (num - 40):
+			break
 
 	elif circle == 2:
 		if spis[-1] == 'Можайка':
@@ -74,7 +82,9 @@ while count < num - 50:
 		else:
 			print('Error!, Try again!')
 
+		#////////////////////////
 		print('{}  ==  {}'.format(city, km))
+		#////////////////////////
 		copy1 = city
 		copy2 = km
 		count += km
@@ -84,6 +94,8 @@ while count < num - 50:
 		stronge.append(city.split(' - ')[1])
 
 		sporge.append(km)
+		if count >= (num - 40):
+			break
 
 		for key, val in cities2.items():
 			if spis[-1] in key:
@@ -91,7 +103,9 @@ while count < num - 50:
 				w = key.split(' - ')[1]
 				po = val
 
+		#////////////////////////
 		print('{} --- {}   {}'.format(w, q, po))
+		#////////////////////////
 		copy1 = w +' - ' + q
 		copy2 = km
 		count += val
@@ -99,6 +113,8 @@ while count < num - 50:
 		sponge.append(w)
 		stronge.append(q)
 		sporge.append(po)
+		if count >= (num - 40):
+			break
 
 	elif circle == 3:
 		if spis[-1] == 'Можайка':
@@ -129,7 +145,9 @@ while count < num - 50:
 		else:
 			print('Error!, Try again!')
 
+		#////////////////////////
 		print('{}  !! {}'.format(city, km))
+		#////////////////////////
 		copy1 = city
 		copy2 = km
 		count += km
@@ -139,6 +157,8 @@ while count < num - 50:
 		stronge.append(city.split(' - ')[1])
 
 		sporge.append(km)
+		if count >= (num - 40):
+			break
 
 		for key, val in al.items():
 			
@@ -148,8 +168,9 @@ while count < num - 50:
 				w = key.split(' - ')[1]
 				ji = val
 
-
+		#////////////////////////
 		print('{} -! {}   {}'.format(q, w, ji))
+		#////////////////////////
 		copy1 = w + ' - ' + w
 		copy2 = km
 		count += val
@@ -159,14 +180,17 @@ while count < num - 50:
 		stronge.append(w)
 
 		sporge.append(ji)
+		if count >= (num - 40):
+			break
 		for key, val in cities2.items():
 			if spis[-1] in key:    # здесь нужно не сразу использовать места, а сначал собрать вместе, а потом выбрать из них на рандом, чтоб избежать многократных повторений
 				q = key.split(' - ')[0]
 				w = key.split(' - ')[1]
 				pl = val
 
-
+		#////////////////////////
 		print('{} -) {}   {}'.format(w, q, pl))
+		#////////////////////////
 		copy1 = w +' - ' + q
 		copy2 = km
 		count += val
@@ -174,20 +198,45 @@ while count < num - 50:
 		sponge.append(w)
 		stronge.append(q)
 		sporge.append(pl)
+		if count >= (num - 40):
+			break
 
 if spis[-1] != 'Алтуфьево':
 	for key, val in al.items():
 		if 'Алтуфьево' in key and spis[-1] in key:
 			km = val
+	#////////////////////////
 	print('{} - Алтуфьево   {}'.format(spis[-1], km))
+	#////////////////////////
 	count += km
 	sponge.append(spis[-1])
 	stronge.append('Алтуфьево')
 	sporge.append(km)
 print(count)
+print(' ')
+print(sum(sporge))
+print(' ')
 print(sponge)
 print(sporge)
 
+if sum(sporge) > num:
+	while sum(sporge) != num:
+		km = random.randint(0, len(sporge) - 1)
+		sporge[km] -= 1
+elif sum(sporge) < num:
+	while sum(sporge) != num:
+		km = random.randint(0, len(sporge) - 1)
+		sporge[km] += 1
+else:
+	pass
+print(sporge)
+print(sum(sporge))
 
-df = pd.DataFrame({'City_1': sponge, 'City_2': stronge, 'km': sporge})
-df.to_excel('./teams.xlsx')
+#text = input('Если результат вас устравивает, то напишите латинскую букву "Y" и все данные внесутся в таблицу, если же результат вам не нравится, сгенерируете другую комбинацию, нажав латинскую "N" ->')
+#if text == 'Y':
+#	df = pd.DataFrame({'City_1': sponge, 'City_2': stronge, 'km': sporge})
+#	df.to_excel('./teams.xlsx')
+#elif text = 'N':
+#	pass
+#else:
+#	print("Выберите: Y/N")
