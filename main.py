@@ -22,9 +22,12 @@ def func():
 	print('{}   {}'.format(city, km))
 	#////////////////////////
 
+	global sponge
+	global sporge
+	global stronge
+
 	sponge = []
 	sporge = []
-
 	stronge = []
 	sponge.append(city.split(' - ')[0])
 	stronge.append(city.split(' - ')[1])
@@ -120,7 +123,7 @@ def func():
 			stronge.append(q)
 			sporge.append(po)
 			if count >= (num - 50):
-				print('Лооол')
+
 				break
 
 		elif circle == 3:
@@ -241,6 +244,7 @@ def func():
 		pass
 	print(sporge)
 	print(sum(sporge))
+
 	if count >= num + 15 or count <= num - 15:
 		return False
 	else:
@@ -251,11 +255,11 @@ def g():
 		continue
 
 g()
-#text = input('Если результат вас устравивает, то напишите латинскую букву "Y" и все данные внесутся в таблицу, если же результат вам не нравится, сгенерируете другую комбинацию, нажав латинскую "N" ->')
-#if text == 'Y':
-#	df = pd.DataFrame({'City_1': sponge, 'City_2': stronge, 'km': sporge})
-#	df.to_excel('./teams.xlsx')
-#elif text = 'N':
-#	pass
-#else:
-#	print("Выберите: Y/N")
+text = input('Если результат вас устравивает, то напишите латинскую букву "Y" и все данные внесутся в таблицу, если же результат вам не нравится, сгенерируете другую комбинацию, нажав латинскую "N" ->')
+if text == 'Y':
+	df = pd.DataFrame({'City_1': sponge, 'City_2': stronge, 'km': sporge})
+	df.to_excel('./teams.xlsx')
+elif text == 'N':
+	pass
+else:
+	print("Выберите: Y/N")
