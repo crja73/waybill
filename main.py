@@ -244,22 +244,35 @@ def func():
 		pass
 	print(sporge)
 	print(sum(sporge))
-
-	if count >= num + 15 or count <= num - 15:
-		return False
+	if count <= 600:
+		if count >= num + 15 or count <= num - 15:
+			return False
+		else:
+			return True
+	elif count > 600 and count <= 1200 :
+		if count >= num + 30 or count <= num - 30:
+			return False
+		else:
+			return True
 	else:
-		return True
+		if count >= num + 40 or count <= num - 40:
+			return False
+		else:
+			return True
 
 def g():
 	while func() != True:
 		continue
 
 g()
-text = input('Если результат вас устравивает, то напишите латинскую букву "Y" и все данные внесутся в таблицу, если же результат вам не нравится, сгенерируете другую комбинацию, нажав латинскую "N" ->')
-if text == 'Y':
-	df = pd.DataFrame({'City_1': sponge, 'City_2': stronge, 'km': sporge})
-	df.to_excel('./teams.xlsx')
-elif text == 'N':
-	pass
-else:
-	print("Выберите: Y/N")
+plag = True
+while plag:
+	text = input('Устраивает? y/n')
+	if text == 'Y' or text == 'y' or text == 'Н' or text == 'н':
+		df = pd.DataFrame({'City_1': sponge, 'City_2': stronge, 'km': sporge})
+		df.to_excel('./teams.xlsx')
+		plag = False
+	elif text == 'N' or text == 'n' or text == 'Т' or text == 'т':
+		g()
+	else:
+		print("Выберите: Y/N")
