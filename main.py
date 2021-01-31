@@ -1,6 +1,9 @@
 import random
 import pandas as pd
 
+print('Введите километраж:')
+num = int(input())
+
 
 def func():
 
@@ -11,8 +14,7 @@ def func():
 	cities4 = {'Румянцево - Подольск': 43, 'Румянцево - МейлРУ': 27, 'Румянцево - Можайка': 15}
 	cities5 = {'МейлРУ - Румянцево': 27, 'МейлРУ - Можайка': 21, 'МейлРУ - Подольск': 50}
 	cities6 = {'Подольск - МейлРУ': 50, 'Подольск - Румянцево': 43, 'Подольск - Можайка': 45}
-	print('Введите километраж')
-	num = 1500  # Нужное количество километров
+	  # Нужное количество километров
 	count = 0  # подсчет километрожа
 	city, km = random.choice(list(cities2.items()))
 	copy1 = city
@@ -58,7 +60,6 @@ def func():
 			stronge.append(a)
 			sporge.append(km)
 			if count >= (num - 50):
-				print('Лооол')
 				break
 
 		elif circle == 2:
@@ -103,7 +104,7 @@ def func():
 
 			sporge.append(km)
 			if count >= (num - 50):
-				print('Лооол')
+
 				break
 
 			for key, val in cities2.items():
@@ -168,7 +169,7 @@ def func():
 
 			sporge.append(km)
 			if count >= (num - 50):
-				print('Лооол')
+
 				break
 
 			for key, val in al.items():
@@ -192,7 +193,7 @@ def func():
 
 			sporge.append(ji)
 			if count >= (num - 50):
-				print('Лооол')
+
 				break
 			for key, val in cities2.items():
 				if spis[-1] in key:    # здесь нужно не сразу использовать места, а сначал собрать вместе, а потом выбрать из них на рандом, чтоб избежать многократных повторений
@@ -211,7 +212,7 @@ def func():
 			stronge.append(q)
 			sporge.append(pl)
 			if count >= (num - 50):
-				print('Лооол')
+
 				break
 
 	if spis[-1] != 'Алтуфьево':
@@ -225,12 +226,10 @@ def func():
 		sponge.append(spis[-1])
 		stronge.append('Алтуфьево')
 		sporge.append(km)
-	print(count)
-	print(' ')
-	print(sum(sporge))
-	print(' ')
-	print(sponge)
-	print(sporge)
+
+
+	print()
+	print('Было: {}'.format(sporge))
 
 	if sum(sporge) > num:
 		while sum(sporge) != num:
@@ -242,15 +241,16 @@ def func():
 			sporge[km] += 1
 	else:
 		pass
-	print(sporge)
-	print(sum(sporge))
+	print('Стало: {}'.format(sporge))
+	print()
+
 	if count <= 600:
-		if count >= num + 15 or count <= num - 15:
+		if count >= num + 10 or count <= num - 10:
 			return False
 		else:
 			return True
 	elif count > 600 and count <= 1200 :
-		if count >= num + 30 or count <= num - 30:
+		if count >= num + 25 or count <= num - 25:
 			return False
 		else:
 			return True
@@ -260,19 +260,26 @@ def func():
 		else:
 			return True
 
-def g():
-	while func() != True:
-		continue
 
-g()
-plag = True
-while plag:
-	text = input('Устраивает? y/n')
+flag = True
+while flag:
+	h = True
+	while h == True:
+		if func() == True:
+			h = False
+	text = input('Устраивает? y/n: ')
 	if text == 'Y' or text == 'y' or text == 'Н' or text == 'н':
-		df = pd.DataFrame({'City_1': sponge, 'City_2': stronge, 'km': sporge})
-		df.to_excel('./teams.xlsx')
-		plag = False
+		try:
+			df = pd.DataFrame({'City_1': sponge, 'City_2': stronge, 'km': sporge})
+			df.to_excel('./teams.xlsx')
+			print('Все прошло успешно!')
+		except:
+			print('Беда с excel')
+		flag = False
+
 	elif text == 'N' or text == 'n' or text == 'Т' or text == 'т':
-		g()
+		continue
 	else:
 		print("Выберите: Y/N")
+
+
