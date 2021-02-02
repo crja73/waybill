@@ -1,5 +1,7 @@
 import random
 import pandas as pd
+import os.path
+import os
 
 print('Введите километраж:')
 num = int(input())
@@ -113,6 +115,7 @@ def func():
 					w = key.split(' - ')[1]
 					po = val
 
+
 			#////////////////////////
 			print('{} - {}   {}'.format(w, q, po))
 			#////////////////////////
@@ -195,14 +198,17 @@ def func():
 			if count >= (num - 50):
 
 				break
+			gron = []
 			for key, val in cities2.items():
 				if spis[-1] in key:    # здесь нужно не сразу использовать места, а сначал собрать вместе, а потом выбрать из них на рандом, чтоб избежать многократных повторений
 					q = key.split(' - ')[0]
 					w = key.split(' - ')[1]
 					pl = val
+					gron.append(w + ' - ' + q + '   ' + str(pl))
 
 			#////////////////////////
-			print('{} - {}   {}'.format(w, q, pl))
+			na = random.choice(gron)
+			print(na)
 			#////////////////////////
 			copy1 = w +' - ' + q
 			copy2 = km
@@ -231,6 +237,7 @@ def func():
 	print()
 	print('Было: {}'.format(sporge))
 
+
 	if sum(sporge) > num:
 		while sum(sporge) != num:
 			km = random.randint(0, len(sporge) - 1)
@@ -243,20 +250,25 @@ def func():
 		pass
 	print('Стало: {}'.format(sporge))
 	print()
-
 	if count <= 600:
 		if count >= num + 10 or count <= num - 10:
+
 			return False
+			
 		else:
 			return True
 	elif count > 600 and count <= 1200 :
-		if count >= num + 25 or count <= num - 25:
+		if count >= num + 15 or count <= num - 15:
+			
 			return False
+			
 		else:
 			return True
 	else:
-		if count >= num + 40 or count <= num - 40:
+		if count >= num + 22 or count <= num - 22:
+			
 			return False
+			
 		else:
 			return True
 
@@ -270,16 +282,22 @@ while flag:
 	text = input('Устраивает? y/n: ')
 	if text == 'Y' or text == 'y' or text == 'Н' or text == 'н':
 		try:
-			df = pd.DataFrame({'City_1': sponge, 'City_2': stronge, 'km': sporge})
-			df.to_excel('./teams.xlsx')
-			print('Все прошло успешно!')
+			path = './teams'
+			c = 1
+			while True:
+				if os.path.exists(path + str(c) + '.xlsx') == True:
+					c += 1
+				else:
+
+					df = pd.DataFrame({'City_1': sponge, 'City_2': stronge, 'km': sporge})
+					df.to_excel(path + str(c) + '.xlsx')
+					print('Все прошло успешно!')
+					break
 		except:
-			print('Беда с excel')
+			print('Беда с excel!')
 		flag = False
 
 	elif text == 'N' or text == 'n' or text == 'Т' or text == 'т':
 		continue
 	else:
 		print("Выберите: Y/N")
-
-
