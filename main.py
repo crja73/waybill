@@ -1,10 +1,24 @@
 import random
 import pandas as pd
 import os.path
-import os
+from datetime import date
 
 print('Введите километраж:')
-num = int(input())
+jo = True
+while jo:
+	try:
+		num = int(input())
+
+	except:
+		print('Неверный формат!')
+		continue
+	if num < 100:
+		print('Минимальный километраж - 100')
+	elif num > 10000:
+		print('Максимальное значение - 10000')
+	else:
+		jo = False
+	
 
 
 def func():
@@ -249,7 +263,6 @@ def func():
 	else:
 		pass
 	print('Стало: {}'.format(sporge))
-	print()
 	if count <= 600:
 		if count >= num + 10 or count <= num - 10:
 
@@ -257,6 +270,7 @@ def func():
 			
 		else:
 			return True
+
 	elif count > 600 and count <= 1200 :
 		if count >= num + 15 or count <= num - 15:
 			
@@ -264,15 +278,22 @@ def func():
 			
 		else:
 			return True
+	elif count > 1200 and count < 3000:
+		if count >= num + 20 or count <= num - 20:
+
+			return False
+
+		else:
+			return True
 	else:
-		if count >= num + 22 or count <= num - 22:
+		if count >= num + 25 or count <= num - 25:
 			
 			return False
 			
 		else:
 			return True
 
-
+current_date = date.today()
 flag = True
 while flag:
 	h = True
@@ -280,24 +301,45 @@ while flag:
 		if func() == True:
 			h = False
 	text = input('Устраивает? y/n: ')
+
 	if text == 'Y' or text == 'y' or text == 'Н' or text == 'н':
+
 		try:
-			path = './teams'
 			c = 1
 			while True:
-				if os.path.exists(path + str(c) + '.xlsx') == True:
+				if os.path.exists('./' + str(current_date) + '_' + 'probeg' + str(c) + '_' + str(num) + '_' '.xlsx') == True:
 					c += 1
 				else:
 
 					df = pd.DataFrame({'City_1': sponge, 'City_2': stronge, 'km': sporge})
-					df.to_excel(path + str(c) + '.xlsx')
+					df.to_excel('./' + str(current_date) + '_' + 'probeg' + str(c) + '_' + str(num) + '_' + '.xlsx')
 					print('Все прошло успешно!')
 					break
+
 		except:
 			print('Беда с excel!')
+
 		flag = False
 
 	elif text == 'N' or text == 'n' or text == 'Т' or text == 'т':
 		continue
 	else:
-		print("Выберите: Y/N")
+		print("Выберите: y/n")
+		text = input()
+		if text == 'n' or text == 'т':
+			continue
+		else:
+			try:
+				c = 1
+				while True:
+					if os.path.exists('./' + str(current_date) + '_' + 'probeg' + str(c) + '_' + str(num) + '_' '.xlsx') == True:
+						c += 1
+					else:
+
+						df = pd.DataFrame({'City_1': sponge, 'City_2': stronge, 'km': sporge})
+						df.to_excel('./' + str(current_date) + '_' + 'probeg' + str(c) + '_' + str(num) + '_' + '.xlsx')
+						print('Все прошло успешно!')
+						break
+
+			except:
+				print('Беда с excel!')
