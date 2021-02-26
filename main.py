@@ -35,18 +35,24 @@ def func():
 	city, km = random.choice(list(cities2.items()))
 	copy1 = city
 	copy2 = km
-
+	global general
+	global general_2
+	general = []
+	general_2 = []
 	#/////////////////////////
-	print('{}   {}'.format(city, km))
+	general.append('{}   {}'.format(city, km))
+
 	#////////////////////////
 
 	global sponge
 	global sporge
 	global stronge
 
+	
 	sponge = []
 	sporge = []
 	stronge = []
+	double = []
 	sponge.append(city.split(' - ')[0])
 	stronge.append(city.split(' - ')[1])
 	sporge.append(km)
@@ -66,7 +72,8 @@ def func():
 			a = copy1.split(' - ')[0]
 			b = copy1.split(' - ')[1]
 			#////////////////////////
-			print('{} - {}  {}'.format(b, a, km))
+			
+			general.append('{} - {}  {}'.format(b, a, km))
 			#////////////////////////
 			count += km
 			copy1 = b + ' - ' + a
@@ -108,7 +115,8 @@ def func():
 				print('Error!, Try again!')
 
 			#////////////////////////
-			print('{}    {}'.format(city, km))
+			
+			general.append('{}    {}'.format(city, km))
 			#////////////////////////
 			copy1 = city
 			copy2 = km
@@ -131,7 +139,8 @@ def func():
 
 
 			#////////////////////////
-			print('{} - {}   {}'.format(w, q, po))
+			
+			general.append('{} - {}   {}'.format(w, q, po))
 			#////////////////////////
 			copy1 = w +' - ' + q
 			copy2 = km
@@ -174,7 +183,8 @@ def func():
 				print('Error!, Try again!')
 
 			#////////////////////////
-			print('{}   {}'.format(city, km))
+			
+			general.append('{}   {}'.format(city, km))
 			#////////////////////////
 			copy1 = city
 			copy2 = km
@@ -198,7 +208,8 @@ def func():
 					ji = val
 
 			#////////////////////////
-			print('{} - {}   {}'.format(q, w, ji))
+			
+			general.append('{} - {}   {}'.format(q, w, ji))
 			#////////////////////////
 			copy1 = w + ' - ' + w
 			copy2 = km
@@ -222,7 +233,7 @@ def func():
 
 			#////////////////////////
 			na = random.choice(gron)
-			print(na)
+			general.append(na)
 			#////////////////////////
 			copy1 = w +' - ' + q
 			copy2 = km
@@ -240,7 +251,8 @@ def func():
 			if 'Алтуфьево' in key and spis[-1] in key:
 				km = val
 		#////////////////////////
-		print('{} - Алтуфьево   {}'.format(spis[-1], km))
+		
+		general.append('{} - Алтуфьево   {}'.format(spis[-1], km))
 		#////////////////////////
 		count += km
 		sponge.append(spis[-1])
@@ -248,8 +260,9 @@ def func():
 		sporge.append(km)
 
 
-	print()
-	print('Было: {}'.format(sporge))
+	general_2 = []
+	general_2.append('Было: {}'.format(sporge))
+	double = sporge
 
 
 	if sum(sporge) > num:
@@ -262,43 +275,37 @@ def func():
 			sporge[km] += 1
 	else:
 		pass
-	print('Стало: {}'.format(sporge))
-	if count <= 600:
-		if count >= num + 10 or count <= num - 10:
+	general_2.append('Стало: {}'.format(sporge))
+	ture_flag = False
+	for x in range(len(sporge)):
+		zero = (double[x]) - 2
 
-			return False
-			
+		ten = (double[x]) + 2
+
+		if sporge[x] >= zero and sporge[x] <= ten:
+			pass
 		else:
-			return True
+			ture_flag = True
+			break
 
-	elif count > 600 and count <= 1200 :
-		if count >= num + 15 or count <= num - 15:
-			
-			return False
-			
-		else:
-			return True
-	elif count > 1200 and count < 3000:
-		if count >= num + 20 or count <= num - 20:
-
-			return False
-
-		else:
-			return True
+	if ture_flag == True:
+		return False
 	else:
-		if count >= num + 25 or count <= num - 25:
-			
-			return False
-			
-		else:
-			return True
+		return True
 
+
+
+	
 current_date = date.today()
 flag = True
 while flag:
 	h = True
 	while h == True:
 		if func() == True:
+			for elem in general:
+				print(elem)
+			for escobar in general_2:
+				print(escobar)
 			h = False
 	text = input('Устраивает? y/n: ')
 
@@ -343,3 +350,4 @@ while flag:
 
 			except:
 				print('Беда с excel!')
+			flag = False
